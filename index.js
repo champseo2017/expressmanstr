@@ -1,17 +1,14 @@
-var express = require('express');
+var express = require("express");
+var path = require("path");
 var app = express();
 
-app.use(express.static(__dirname + '/public'));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
-app.get('/', function(req, res){
-    res.send('Hello Express');
-})
+app.get("/", function (req, res) {
+  res.render("index", { title: "Express และ Pug" });
+});
 
-app.get('/Products', function(req, res){
-    res.redirect('products.html')
-})
-
-app.listen(3000, function(){
-    console.log('Express running on port 3000');
-    
-})
+app.listen(3000, function () {
+  console.log("Express running on port 3000");
+});
